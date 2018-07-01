@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import injectTapEventPlugin from 'react-tap-event-plugin';
+// import injectTapEventPlugin from 'react-tap-event-plugin';
 import {
   BrowserRouter as Router,
   Route,
@@ -12,11 +12,10 @@ import registerServiceWorker from './registerServiceWorker';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import './index.css';
 import { createStore, applyMiddleware } from 'redux';
-import { reducer as formReducer } from 'redux-form';
 import reducers from './reducers';
 import reduxThunk from 'redux-thunk';
 
-injectTapEventPlugin();
+// injectTapEventPlugin(); // removed this because https://github.com/zilverline/react-tap-event-plugin#deprecated
 
 const createStoreWithMiddleware = applyMiddleware(reduxThunk)(createStore);
 
