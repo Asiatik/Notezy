@@ -1,6 +1,4 @@
 import axios from 'axios';
-import React, {Component} from 'react';
-import {Link} from 'react-router-dom';
 import {SHOW_MESSAGE} from './types';
 
 export function hideMessage(){
