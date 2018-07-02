@@ -15,7 +15,7 @@ class Notepad extends Component {
     console.log(event.target.name);
     if (event.target.name === "title") {
       noteData.title = event.target.value;
-    } else if (event.target.name === "content") {
+    } else if (event.target.name === "message") {
       noteData.content = event.target.value;
     }
     console.log(noteData);
@@ -45,6 +45,8 @@ class Notepad extends Component {
               name="message"
               className="form-control"
               required=""
+              value={JSON.parse(this.props.noteData).content}
+              onChange={this.handleChange}
               placeholder="Things you want to say.."
             />
             {/* <TextField
