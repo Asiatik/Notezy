@@ -19,6 +19,16 @@ class Home extends Component {
       }
     ]
   };
+
+  componentDidMount() {
+    if (localStorage && localStorage.getItem("notezy"))
+      this.setState({ notesData: JSON.parse(localStorage.getItem("notezy")) });
+  }
+
+  componentDidUpdate() {
+    localStorage.setItem("notezy", JSON.stringify(this.state.notesData));
+  }
+
   updateNote = noteDataReceived => {
     let { notesData } = this.state;
     console.log("Received in props:");
