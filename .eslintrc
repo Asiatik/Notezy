@@ -1,0 +1,37 @@
+{
+  "parser": "babel-eslint",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+  "plugins": [
+    "react"
+  ],
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended"
+  ],
+  "rules": {
+    "no-dupe-keys": 2,
+    "no-cond-assign": 2,
+    "no-sparse-arrays": 2,
+    "eqeqeq": 1,
+    "radix": 1,
+    "no-unused-vars": 1,
+    "no-else-return": 1,
+    "react/jsx-no-undef": 0,
+    "no-useless-escape": 0,
+    "no-console": 0,
+    "no-debugger": 0
+  },
+  "globals": {
+    "_": true,
+    "React": true,
+    "ReactDOM": true,
+    "Redux": true,
+    "ReactRouterDOM": true,
+    "ReduxPersist": true,
+    "ReduxThunk": true,
+  }
+}
