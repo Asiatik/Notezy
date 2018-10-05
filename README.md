@@ -1,4 +1,6 @@
 # Notezy
+[![Gitter](https://img.shields.io/gitter/room/DAVFoundation/DAV-Contributors.svg?)](https://gitter.im/asiatik-open/codezilla)
+
 Notezy is an open sourced Note making webapp.
 ![image](https://user-images.githubusercontent.com/11137394/46553809-1dad2380-c8fc-11e8-9fc9-f8548a26ed07.png)
 link: http://notezy.surge.sh/
