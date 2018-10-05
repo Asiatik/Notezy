@@ -41,11 +41,11 @@ class Home extends Component {
   };
   removeNote = id => {
     let index = _.findIndex(this.state.notesData, { id });
-    this.setState(prevState=>{
-        prevState.notesData.splice(index,1);
-        return {
-            notesData: prevState.notesData
-        }
+    this.setState(prevState => {
+      prevState.notesData.splice(index, 1);
+      return {
+        notesData: prevState.notesData
+      }
     })
     // console.log(this.state);
   }
@@ -71,7 +71,7 @@ class Home extends Component {
     };
     return (
       <div className="home-wrap">
-        <h1 style={{ textAlign: "center" }}>Notezy</h1>
+        <h1 style={{ textAlign: "center" }}>Notezy&nbsp;📒</h1>
         <Grid fluid>
           <Row>
             {this.state.notesData.map(noteData => {
@@ -80,7 +80,7 @@ class Home extends Component {
                   key={noteData.id}
                   noteData={JSON.stringify(noteData)}
                   updateNote={this.updateNote}
-                  remove={()=>this.removeNote(noteData.id)}
+                  remove={() => this.removeNote(noteData.id)}
                 />
               );
             })}

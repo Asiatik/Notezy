@@ -8,7 +8,7 @@ import IconButton from "@material-ui/core/IconButton";
 import Delete from "@material-ui/icons/Delete";
 
 class Notepad extends Component {
-  state = {};
+  state = { rotate: 1 };
 
   handleChange = event => {
     let noteData = JSON.parse(this.props.noteData);
@@ -24,21 +24,24 @@ class Notepad extends Component {
 
   render() {
     const styles = {
-      card: {
-        padding: "20px",
-        marginBottom: "20px"
+      cardTitle: {
+        fontFamily: "Gloria Hallelujah, cursive",
+        width: "100%",
+        backgroundColor: "transparent",
+        border: "none"
       }
     };
     return (
-      <Col xs={12} md={4} className="notepad-wrap">
-        <Card style={styles.card}>
+      <Col xs={12} md={3} className="notepad-wrap">
+        <Card className="sticky">
           <div>
-            <TextField
+            <input
               hintText="Title"
               fullWidth={true}
               value={JSON.parse(this.props.noteData).title}
               name="title"
               onChange={this.handleChange}
+              placeholder="Title..."
             />
             <textarea
               id="message"
@@ -49,15 +52,6 @@ class Notepad extends Component {
               onChange={this.handleChange}
               placeholder="Things you want to say.."
             />
-            {/* <TextField
-                        hintText="Your Notes.."
-                        value={JSON.parse(this.props.noteData).content}
-                        name="content"
-                        fullWidth={true}
-                        rows={4}
-                        multiLine={true}
-                        onChange={this.handleChange}
-                    /> */}
           </div>
           <div>
             <IconButton

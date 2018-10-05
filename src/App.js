@@ -22,6 +22,7 @@ class App extends Component {
     }
     return (
       <div className="app-wrap">
+        <link href='https://fonts.googleapis.com/css?family=Gloria+Hallelujah' rel='stylesheet' type='text/css' />
         <Route exact path="/" component={Home} />
         {/*message*/}
         <Snackbar
