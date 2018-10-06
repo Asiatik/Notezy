@@ -31,11 +31,23 @@ class Notepad extends Component {
         border: "none"
       }
     };
+
+    const theme = {
+      backgroundColor: `${this.props.bgColor}` || '',
+      color: `${this.props.color}` || ''
+    }
+
+    const cardStyle = {
+      ...this.props.style,
+      ...theme
+    }
+
     return (
-      <Col xs={12} md={3} className="notepad-wrap">
-        <Card className="sticky">
+      <Col xs={12} md={3} className="notepad-wrap" style={cardStyle}>
+        <Card className="sticky" style={theme}>
           <div>
             <input
+              style={{ color: theme.color }}
               hintText="Title"
               fullWidth={true}
               value={JSON.parse(this.props.noteData).title}
@@ -44,6 +56,7 @@ class Notepad extends Component {
               placeholder="Title..."
             />
             <textarea
+              style={{ color: theme.color }}
               id="message"
               name="message"
               className="form-control"

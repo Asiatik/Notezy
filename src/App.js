@@ -4,6 +4,8 @@ import { connect } from "react-redux";
 import Snackbar from "material-ui/Snackbar";
 import * as actions from "./actions";
 import Home from "./components/Home";
+import Theme from "./components/Theme";
+
 import "./App.css";
 class App extends Component {
   closeSnackbar = () => {
@@ -20,10 +22,16 @@ class App extends Component {
       snackbarOpen = this.props.message.payload.show;
       snackbarMessage = this.props.message.payload.message;
     }
+
+    const theme = {
+      backgroundColor: this.props.theme.background
+    }
+
     return (
-      <div className="app-wrap">
+      <div className="app-wrap" style={theme}>
         <link href='https://fonts.googleapis.com/css?family=Gloria+Hallelujah' rel='stylesheet' type='text/css' />
         <Route exact path="/" component={Home} />
+        <Route path="/theme" component={Theme} />
         {/*message*/}
         <Snackbar
           open={snackbarOpen}
@@ -38,7 +46,8 @@ class App extends Component {
 
 function mapStateToProps(state) {
   return {
-    message: state.message
+    message: state.message,
+    theme: state.theme
   };
 }
 
