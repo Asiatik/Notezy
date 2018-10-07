@@ -1,7 +1,10 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import FloatingActionButton from "material-ui/FloatingActionButton";
+import Button from '@material-ui/core/Button';
+import Icon from '@material-ui/core/Icon';
 import ContentAdd from "material-ui/svg-icons/content/add";
+import ContentEdit from "material-ui/svg-icons/content/create";
 import { Grid, Row } from "react-flexbox-grid";
 import _ from "lodash";
 import * as actions from "./../actions";
@@ -67,6 +70,12 @@ class Home extends Component {
         position: "fixed",
         right: "20px",
         bottom: "20px"
+      },
+      floatingEditButton: {
+        marginRight: "20px",
+        position: "fixed",
+        left: "20px",
+        bottom: "20px"
       }
     };
     return (
@@ -91,6 +100,15 @@ class Home extends Component {
           onClick={this.handleAddNotepad}
         >
           <ContentAdd />
+        </FloatingActionButton>
+        <FloatingActionButton
+          style={styles.floatingEditButton}
+          onClick={() => {
+            console.log(this.props.history)
+            this.props.history.push('theme')
+          }}
+        >
+          <ContentEdit />
         </FloatingActionButton>
       </div>
     );
