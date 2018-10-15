@@ -1,7 +1,10 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import FloatingActionButton from "material-ui/FloatingActionButton";
+import Button from '@material-ui/core/Button';
+import Icon from '@material-ui/core/Icon';
 import ContentAdd from "material-ui/svg-icons/content/add";
+import ContentEdit from "material-ui/svg-icons/content/create";
 import { Grid, Row } from "react-flexbox-grid";
 import _ from "lodash";
 import * as actions from "./../actions";
@@ -61,11 +64,18 @@ class Home extends Component {
     this.setState({ notesData });
   };
   render() {
+    console.log(this.props.theme)
     const styles = {
       floatingButton: {
         marginRight: "20px",
         position: "fixed",
         right: "20px",
+        bottom: "20px"
+      },
+      floatingEditButton: {
+        marginRight: "20px",
+        position: "fixed",
+        left: "20px",
         bottom: "20px"
       }
     };
@@ -81,6 +91,8 @@ class Home extends Component {
                   noteData={JSON.stringify(noteData)}
                   updateNote={this.updateNote}
                   remove={() => this.removeNote(noteData.id)}
+                  bgColor={this.props.theme.cardBackground}
+                  color={this.props.theme.cardText}
                 />
               );
             })}
@@ -92,13 +104,23 @@ class Home extends Component {
         >
           <ContentAdd />
         </FloatingActionButton>
+        <FloatingActionButton
+          style={styles.floatingEditButton}
+          onClick={() => {
+            this.props.history.push('theme')
+          }}
+        >
+          <ContentEdit />
+        </FloatingActionButton>
       </div>
     );
   }
 }
 
 function mapStateToProps(state) {
-  return {};
+  return {
+    theme: state.theme
+  };
 }
 
 export default connect(

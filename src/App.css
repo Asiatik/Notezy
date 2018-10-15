@@ -1,3 +1,12 @@
+body, html, #root, main {
+  height: 100%;
+}
+
+.app-wrap {
+  height: 100%;
+  background-color: #aa73ff
+}
+
 .form-control {
     display: block;
     width: 100%;
@@ -25,7 +34,7 @@ textarea {
 }
 
 .sticky{
-    background-color: yellow !important;
+    background-color: yellow;
     font-family: Gloria Hallelujah, cursive;
     display: block;
     padding: 1em;
