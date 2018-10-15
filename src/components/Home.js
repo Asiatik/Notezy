@@ -64,6 +64,7 @@ class Home extends Component {
     this.setState({ notesData });
   };
   render() {
+    console.log(this.props.theme)
     const styles = {
       floatingButton: {
         marginRight: "20px",
@@ -90,6 +91,8 @@ class Home extends Component {
                   noteData={JSON.stringify(noteData)}
                   updateNote={this.updateNote}
                   remove={() => this.removeNote(noteData.id)}
+                  bgColor={this.props.theme.cardBackground}
+                  color={this.props.theme.cardText}
                 />
               );
             })}
@@ -104,7 +107,6 @@ class Home extends Component {
         <FloatingActionButton
           style={styles.floatingEditButton}
           onClick={() => {
-            console.log(this.props.history)
             this.props.history.push('theme')
           }}
         >
@@ -116,7 +118,9 @@ class Home extends Component {
 }
 
 function mapStateToProps(state) {
-  return {};
+  return {
+    theme: state.theme
+  };
 }
 
 export default connect(

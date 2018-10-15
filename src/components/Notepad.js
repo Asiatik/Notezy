@@ -18,7 +18,7 @@ class Notepad extends Component {
     } else if (event.target.name === "message") {
       noteData.content = event.target.value;
     }
-    console.log(noteData);
+
     this.props.updateNote(noteData);
   };
 
@@ -37,9 +37,10 @@ class Notepad extends Component {
       color: `${this.props.color}` || ''
     }
 
+    console.log(this.props.color)
+
     const cardStyle = {
-      ...this.props.style,
-      ...theme
+      ...this.props.style
     }
 
     return (

@@ -8,10 +8,9 @@ const initialState = {
   cardText: 'rgb(57, 57, 57)'
 }
 
-export default function(state = initialState, action) {
+export default function (state = initialState, action) {
   switch (action.type) {
     case CHANGE_THEME:
-    console.log(action.payload)
       return {
         ...state,
         [Object.keys(action.payload)[0]]: Object.values(action.payload)[0]
