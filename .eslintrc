@@ -32,6 +32,6 @@
     "Redux": true,
     "ReactRouterDOM": true,
     "ReduxPersist": true,
-    "ReduxThunk": true,
+    "ReduxThunk": true
   }
 }

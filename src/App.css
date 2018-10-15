@@ -1,3 +1,13 @@
+[draggable] {
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+    /* Required to make elements draggable in old WebKit */
+    -khtml-user-drag: element;
+    -webkit-user-drag: element;
+}
+
 .form-control {
     display: block;
     width: 100%;
@@ -24,28 +34,30 @@ textarea {
     overflow-x: hidden;
 }
 
-.sticky{
+.sticky {
     background-color: yellow !important;
     font-family: Gloria Hallelujah, cursive;
     display: block;
     padding: 1em;
+    cursor: move;
     margin: 8px;
     background: linear-gradient(top, rgba(255, 226, 129, 0.05), rgba(255, 158, 129, 0.25));
     background-color: #FFFD75;
     box-shadow: 5px 5px 10px -2px rgba(33,33,33,.3);
-    transition: transform .15s;
+    transition: transform .15s, visibility .10,s; 
+    transition-timing-function: ease-in;
     transform: rotate(-2deg);
     z-index: 1 ;
 }
 
-.sticky input{
+.sticky input {
     width: 100%;
     background-color: transparent;
     border: none;
     outline: none;
 }
 
-.sticky input{
+.sticky input {
     font-family: Gloria Hallelujah, cursive;
     font-size: 16px;
     border: none;
@@ -53,18 +65,18 @@ textarea {
     color:rgb(57, 57, 57);
 }
 
-.sticky input:focus{
+.sticky input:focus {
     border: none;
     outline: none;
 }
 
-.sticky input::placeholder{
+.sticky input::placeholder {
     font-family: Gloria Hallelujah, cursive;
     color:rgb(94, 94, 94);
     font-size: 16px;
 }
 
-.sticky textarea{
+.sticky textarea {
     font-family: Gloria Hallelujah, cursive;
     font-size: 16px;
     border: none;
@@ -72,8 +84,25 @@ textarea {
     color:rgb(57, 57, 57);
 }
 
-.sticky textarea::placeholder{
+.sticky textarea::placeholder {
     font-family: Gloria Hallelujah, cursive;
     color:rgb(94, 94, 94);
     font-size: 16px;
+}
+
+.growCardMoving {   
+    transform: rotate(0deg);
+    opacity: .25;
+    transform: scale(1, 1);
+}
+
+.hideCard {
+    visibility: hidden;
+}
+
+.showBorderOver {
+    border: 1px dashed yellow;
+    background: #aa73ff;
+    opacity: 0.55;
+    margin: 6px;
 }

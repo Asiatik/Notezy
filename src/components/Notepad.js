@@ -1,14 +1,16 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import { connect } from "react-redux";
 import { Col } from "react-flexbox-grid";
-import { Card } from "material-ui/Card";
+import Card from "@material-ui/core/Card";
 import * as actions from "../actions";
-import TextField from "material-ui/TextField";
 import IconButton from "@material-ui/core/IconButton";
 import Delete from "@material-ui/icons/Delete";
 
-class Notepad extends Component {
-  state = { rotate: 1 };
+class Notepad extends PureComponent {
+
+  constructor(props) {
+    super(props);
+  }
 
   handleChange = event => {
     let noteData = JSON.parse(this.props.noteData);
@@ -22,6 +24,53 @@ class Notepad extends Component {
     this.props.updateNote(noteData);
   };
 
+  onDragStart = event => {
+    event.dataTransfer.effectAllowed = "move";
+    event.currentTarget.classList.add("growCardMoving");   
+    event.dataTransfer.setData("text/plain", event.currentTarget.id);
+  };
+
+  onDrop = event => {
+    event.preventDefault();
+    console.log('drop');
+    if (event.currentTarget.classList.contains("notepad-wrap")) {
+      let data = event.dataTransfer.getData("text/plain");
+      let childNode = event.currentTarget.firstChild;
+      let replaceNode = document.getElementById(data);
+      let parentReplaceNode = replaceNode.parentNode;
+      let parentChildNode = childNode.parentNode;
+      parentReplaceNode.replaceChild(childNode, replaceNode); 
+      childNode.classList.remove("growCardMoving");
+      parentChildNode.appendChild(replaceNode);                   
+      replaceNode.classList.remove("growCardMoving", "hideCard");
+    }    
+  }
+
+  onDragEnd = event => {
+    event.preventDefault();
+    console.log('end');
+    if (event.currentTarget.classList.contains('notepad-wrap') && event.currentTarget.firstChild) {
+      event.currentTarget.firstChild.classList.remove("growCardMoving", "hideCard");
+    }
+  }
+
+  onDragLeave = event => {
+    event.preventDefault();
+    console.log("leave")
+    document.querySelectorAll('.growCardMoving').forEach(element => {
+      element.classList.remove('growCardMoving')
+    })
+  }
+
+  onDragOver = event => {
+    event.preventDefault();
+    console.log('over');
+    if (!event.currentTarget.firstChild.classList.contains('growCardMoving')) {  
+      event.currentTarget.firstChild.classList.add('growCardMoving');
+      event.dataTransfer.dropEffect = "move";   
+    }
+  }
+
   render() {
     const styles = {
       cardTitle: {
@@ -32,8 +81,20 @@ class Notepad extends Component {
       }
     };
     return (
-      <Col xs={12} md={3} className="notepad-wrap">
-        <Card className="sticky">
+     <Col      
+      xs={12} md={3} className="notepad-wrap"
+      onDrop={this.onDrop}
+      onDragOver={this.onDragOver}    
+      onDragLeave={this.onDragLeave}
+      onDragEnd={this.onDragEnd}
+      id={`Col-${JSON.parse(this.props.noteData).id}`}
+     >
+        <Card    
+        id={`Card-${JSON.parse(this.props.noteData).id}`}     
+        className="sticky"
+        draggable="true"
+        onDragStart={this.onDragStart}
+        >
           <div>
             <input
               hintText="Title"

@@ -1,13 +1,12 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import FloatingActionButton from "material-ui/FloatingActionButton";
-import ContentAdd from "material-ui/svg-icons/content/add";
+import ContentAdd from "@material-ui/icons/Add";
 import { Grid, Row } from "react-flexbox-grid";
 import _ from "lodash";
 import * as actions from "./../actions";
 import Notepad from "./Notepad";
-
-let id = 1;
+import uuid from 'uuid/v4';
 
 class Home extends Component {
   state = {
@@ -52,13 +51,12 @@ class Home extends Component {
   handleAddNotepad = event => {
     console.log("Length:" + this.state.notesData.length);
     let newNoteData = {
-      id: id++,
+      id: uuid(),
       title: "",
       content: ""
-    };
-    let notesData = this.state.notesData;
-    notesData.push(newNoteData);
-    this.setState({ notesData });
+    };    
+
+    this.setState({ notesData: this.state.notesData.concat([newNoteData]) });
   };
   render() {
     const styles = {
