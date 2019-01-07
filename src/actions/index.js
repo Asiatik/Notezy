@@ -17,10 +17,8 @@ export function postRequest(url,values,type="entry",errMessage="Error! Email or 
     axios.post(url, values).then(function(response) {
       var message="Success! Added a new "+type;
       dispatch({type:SHOW_MESSAGE,payload:{show:true,message:message}});
-      console.log(response.data);
     }).catch(function(error) {
       dispatch({type:SHOW_MESSAGE,payload:{show:true,message:errMessage}});
-      console.log("error response");
       console.log(error);
 
     });

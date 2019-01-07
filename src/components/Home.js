@@ -30,10 +30,8 @@ class Home extends Component {
 
   updateNote = noteDataReceived => {
     let { notesData } = this.state;
-    console.log("Received in props:");
     var noteData = noteDataReceived;
     var index = _.findIndex(notesData, { id: noteData.id });
-    console.log(index);
     // Replace item at index using native splice
     notesData.splice(index, 1, noteData);
     this.setState({ notesData: notesData });
@@ -46,10 +44,8 @@ class Home extends Component {
         notesData: prevState.notesData
       }
     })
-    // console.log(this.state);
   }
   handleAddNotepad = event => {
-    console.log("Length:" + this.state.notesData.length);
     let newNoteData = {
       id: uuid(),
       title: "",

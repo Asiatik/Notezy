@@ -14,13 +14,11 @@ class Notepad extends PureComponent {
 
   handleChange = event => {
     let noteData = JSON.parse(this.props.noteData);
-    console.log(event.target.name);
     if (event.target.name === "title") {
       noteData.title = event.target.value;
     } else if (event.target.name === "message") {
       noteData.content = event.target.value;
     }
-    console.log(noteData);
     this.props.updateNote(noteData);
   };
 
@@ -32,7 +30,6 @@ class Notepad extends PureComponent {
 
   onDrop = event => {
     event.preventDefault();
-    console.log('drop');
     if (event.currentTarget.classList.contains("notepad-wrap")) {
       let data = event.dataTransfer.getData("text/plain");
       let childNode = event.currentTarget.firstChild;
@@ -48,7 +45,6 @@ class Notepad extends PureComponent {
 
   onDragEnd = event => {
     event.preventDefault();
-    console.log('end');
     if (event.currentTarget.classList.contains('notepad-wrap') && event.currentTarget.firstChild) {
       event.currentTarget.firstChild.classList.remove("growCardMoving", "hideCard");
     }
@@ -56,7 +52,6 @@ class Notepad extends PureComponent {
 
   onDragLeave = event => {
     event.preventDefault();
-    console.log("leave")
     document.querySelectorAll('.growCardMoving').forEach(element => {
       element.classList.remove('growCardMoving')
     })
@@ -64,7 +59,6 @@ class Notepad extends PureComponent {
 
   onDragOver = event => {
     event.preventDefault();
-    console.log('over');
     if (!event.currentTarget.firstChild.classList.contains('growCardMoving')) {  
       event.currentTarget.firstChild.classList.add('growCardMoving');
       event.dataTransfer.dropEffect = "move";   
