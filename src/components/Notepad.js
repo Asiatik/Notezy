@@ -26,7 +26,7 @@ class Notepad extends PureComponent {
 
   onDragStart = event => {
     event.dataTransfer.effectAllowed = "move";
-    event.currentTarget.classList.add("growCardMoving");   
+    event.currentTarget.classList.add("growCardMoving");
     event.dataTransfer.setData("text/plain", event.currentTarget.id);
   };
 
@@ -37,13 +37,13 @@ class Notepad extends PureComponent {
       let data = event.dataTransfer.getData("text/plain");
       let childNode = event.currentTarget.firstChild;
       let replaceNode = document.getElementById(data);
-      let parentReplaceNode = replaceNode.parentNode;
-      let parentChildNode = childNode.parentNode;
-      parentReplaceNode.replaceChild(childNode, replaceNode); 
       childNode.classList.remove("growCardMoving");
-      parentChildNode.appendChild(replaceNode);                   
       replaceNode.classList.remove("growCardMoving", "hideCard");
-    }    
+      this.props.swapNotes(
+        JSON.parse(replaceNode.getAttribute("noteData")),
+        JSON.parse(childNode.getAttribute("noteData"))
+      );
+    }
   }
 
   onDragEnd = event => {
@@ -65,35 +65,29 @@ class Notepad extends PureComponent {
   onDragOver = event => {
     event.preventDefault();
     console.log('over');
-    if (!event.currentTarget.firstChild.classList.contains('growCardMoving')) {  
+    if (!event.currentTarget.firstChild.classList.contains('growCardMoving')) {
       event.currentTarget.firstChild.classList.add('growCardMoving');
-      event.dataTransfer.dropEffect = "move";   
+      event.dataTransfer.dropEffect = "move";
     }
   }
 
   render() {
-    const styles = {
-      cardTitle: {
-        fontFamily: "Gloria Hallelujah, cursive",
-        width: "100%",
-        backgroundColor: "transparent",
-        border: "none"
-      }
-    };
     return (
-     <Col      
-      xs={12} md={3} className="notepad-wrap"
-      onDrop={this.onDrop}
-      onDragOver={this.onDragOver}    
-      onDragLeave={this.onDragLeave}
-      onDragEnd={this.onDragEnd}
-      id={`Col-${JSON.parse(this.props.noteData).id}`}
-     >
-        <Card    
-        id={`Card-${JSON.parse(this.props.noteData).id}`}     
-        className="sticky"
-        draggable="true"
-        onDragStart={this.onDragStart}
+      <Col
+        xs={12} md={3} className="notepad-wrap"
+        onDrop={this.onDrop}
+        onDragOver={this.onDragOver}
+        onDragLeave={this.onDragLeave}
+        onDragEnd={this.onDragEnd}
+        id={`Col-${JSON.parse(this.props.noteData).id}`}
+        noteData={this.props.noteData}
+      >
+        <Card
+          id={`Card-${JSON.parse(this.props.noteData).id}`}
+          className="sticky"
+          draggable="true"
+          onDragStart={this.onDragStart}
+          noteData={this.props.noteData}
         >
           <div>
             <input

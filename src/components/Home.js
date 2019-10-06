@@ -12,7 +12,7 @@ class Home extends Component {
   state = {
     notesData: [
       {
-        id: 0,
+        id: uuid(),
         title: "",
         content: ""
       }
@@ -54,9 +54,17 @@ class Home extends Component {
       id: uuid(),
       title: "",
       content: ""
-    };    
+    };
 
     this.setState({ notesData: this.state.notesData.concat([newNoteData]) });
+  };
+  swapNotes = (noteA, noteB) => {
+    let { notesData } = this.state;
+    var indexA = _.findIndex(notesData, { id: noteA.id });
+    var indexB = _.findIndex(notesData, { id: noteB.id });
+    notesData.splice(indexA, 1, noteB);
+    notesData.splice(indexB, 1, noteA);
+    this.setState({ notesData: notesData });
   };
   render() {
     const styles = {
@@ -79,6 +87,7 @@ class Home extends Component {
                   noteData={JSON.stringify(noteData)}
                   updateNote={this.updateNote}
                   remove={() => this.removeNote(noteData.id)}
+                  swapNotes={this.swapNotes}
                 />
               );
             })}
