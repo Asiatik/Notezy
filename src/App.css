@@ -106,3 +106,10 @@ textarea {
     opacity: 0.55;
     margin: 6px;
 }
+.col-md-3 {
+    transition: all 0.5s ease-in;
+}
+.remove {
+    transform: scale(0);
+    opacity: 0;
+}
