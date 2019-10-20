@@ -78,6 +78,7 @@ class Notepad extends PureComponent {
      <Col      
       xs={12} md={3} className="notepad-wrap"
       onDrop={this.onDrop}
+      className={this.props.colClassName}
       onDragOver={this.onDragOver}    
       onDragLeave={this.onDragLeave}
       onDragEnd={this.onDragEnd}

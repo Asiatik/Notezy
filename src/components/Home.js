@@ -14,7 +14,8 @@ class Home extends Component {
       {
         id: 0,
         title: "",
-        content: ""
+        content: "",
+        colClassName: "",
       }
     ]
   };
@@ -38,12 +39,22 @@ class Home extends Component {
   };
   removeNote = id => {
     let index = _.findIndex(this.state.notesData, { id });
-    this.setState(prevState => {
-      prevState.notesData.splice(index, 1);
-      return {
-        notesData: prevState.notesData
-      }
-    })
+
+    let { notesData } = this.state;
+    var noteData = {
+      ...notesData[index],
+      colClassName: 'remove'
+    }
+    notesData.splice(index, 1, noteData);
+    this.setState({ notesData: notesData });
+    setTimeout(()=>{
+      this.setState(prevState => {
+        prevState.notesData.splice(index, 1);
+        return {
+          notesData: prevState.notesData
+        }
+      })
+    },500);
   }
   handleAddNotepad = event => {
     let newNoteData = {
@@ -72,6 +83,7 @@ class Home extends Component {
               return (
                 <Notepad
                   key={noteData.id}
+                  colClassName={noteData.colClassName}
                   noteData={JSON.stringify(noteData)}
                   updateNote={this.updateNote}
                   remove={() => this.removeNote(noteData.id)}
