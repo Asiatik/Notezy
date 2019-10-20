@@ -8,7 +8,6 @@ import "./App.css";
 class App extends Component {
   closeSnackbar = () => {
     this.props.hideMessage();
-    console.log("hideMessage");
   };
   render() {
     var snackbarOpen = false;
