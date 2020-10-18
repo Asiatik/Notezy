@@ -18,64 +18,16 @@ class Notepad extends PureComponent {
     this.props.updateNote(noteData);
   };
 
-  onDragStart = event => {
-    event.dataTransfer.effectAllowed = "move";
-    event.currentTarget.classList.add("growCardMoving");   
-    event.dataTransfer.setData("text/plain", event.currentTarget.id);
-  };
-
-  onDrop = event => {
-    event.preventDefault();
-    if (event.currentTarget.classList.contains("notepad-wrap")) {
-      let data = event.dataTransfer.getData("text/plain");
-      let childNode = event.currentTarget.firstChild;
-      let replaceNode = document.getElementById(data);
-      let parentReplaceNode = replaceNode.parentNode;
-      let parentChildNode = childNode.parentNode;
-      parentReplaceNode.replaceChild(childNode, replaceNode); 
-      childNode.classList.remove("growCardMoving");
-      parentChildNode.appendChild(replaceNode);                   
-      replaceNode.classList.remove("growCardMoving", "hideCard");
-    }    
-  }
-
-  onDragEnd = event => {
-    event.preventDefault();
-    if (event.currentTarget.classList.contains('notepad-wrap') && event.currentTarget.firstChild) {
-      event.currentTarget.firstChild.classList.remove("growCardMoving", "hideCard");
-    }
-  }
-
-  onDragLeave = event => {
-    event.preventDefault();
-    document.querySelectorAll('.growCardMoving').forEach(element => {
-      element.classList.remove('growCardMoving')
-    })
-  }
-
-  onDragOver = event => {
-    event.preventDefault();
-    if (!event.currentTarget.firstChild.classList.contains('growCardMoving')) {  
-      event.currentTarget.firstChild.classList.add('growCardMoving');
-      event.dataTransfer.dropEffect = "move";   
-    }
-  }
 
   render() {
     return (
      <Col      
       xs={12} md={3} className="notepad-wrap"
-      onDrop={this.onDrop}
-      onDragOver={this.onDragOver}    
-      onDragLeave={this.onDragLeave}
-      onDragEnd={this.onDragEnd}
       id={`Col-${JSON.parse(this.props.noteData).id}`}
      >
         <Card    
         id={`Card-${JSON.parse(this.props.noteData).id}`}     
         className="sticky"
-        draggable="true"
-        onDragStart={this.onDragStart}
         >
           <div>
             <input
