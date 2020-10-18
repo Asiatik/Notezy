@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import FloatingActionButton from "material-ui/FloatingActionButton";
 import ContentAdd from "@material-ui/icons/Add";
+import ContentDelete from "@material-ui/icons/Delete";
 import { Grid, Row } from "react-flexbox-grid";
 import _ from "lodash";
 import * as actions from "./../actions";
@@ -54,6 +55,17 @@ class Home extends Component {
 
     this.setState({ notesData: this.state.notesData.concat([newNoteData]) });
   };
+  
+  handleDeleteAll = () => {
+    this.setState({ notesData: [
+      {
+        id: 0,
+        title: "",
+        content: ""
+      }
+    ] });
+  }
+
   render() {
     const styles = {
       floatingButton: {
@@ -61,7 +73,14 @@ class Home extends Component {
         position: "fixed",
         right: "20px",
         bottom: "20px"
-      }
+      },
+      floatingDeleteButton: {
+        marginLeft: "20px",
+        position: "fixed",
+        left: "20px",
+        bottom: "20px",
+        backgroundColor: 'red'
+      },
     };
     return (
       <div className="home-wrap">
@@ -85,6 +104,13 @@ class Home extends Component {
           onClick={this.handleAddNotepad}
         >
           <ContentAdd />
+        </FloatingActionButton>
+        <FloatingActionButton
+          style={styles.floatingDeleteButton}
+          backgroundColor="#E91E63"
+          onClick={this.handleDeleteAll}
+        >
+          <ContentDelete />
         </FloatingActionButton>
       </div>
     );
