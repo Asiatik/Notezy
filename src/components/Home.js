@@ -65,7 +65,7 @@ class Home extends Component {
     };
     return (
       <div className="home-wrap">
-        <h1 style={{ textAlign: "center" }}>Notezy&nbsp;📒</h1>
+        <h1 style={{ textAlign: "center" }}>Notezy&nbsp;<span aria-label="book" role="img">📒</span></h1>
         <Grid fluid>
           <Row>
             {this.state.notesData.map(noteData => {
