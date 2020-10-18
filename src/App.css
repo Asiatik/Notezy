@@ -41,7 +41,7 @@ textarea {
     padding: 1em;
     cursor: move;
     margin: 8px;
-    background: linear-gradient(top, rgba(255, 226, 129, 0.05), rgba(255, 158, 129, 0.25));
+    background: linear-gradient(to top, rgba(255, 226, 129, 0.05), rgba(255, 158, 129, 0.25));
     background-color: #FFFD75;
     box-shadow: 5px 5px 10px -2px rgba(33,33,33,.3);
     transition: transform .15s, visibility .10,s; 

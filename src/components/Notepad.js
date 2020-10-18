@@ -8,10 +8,6 @@ import Delete from "@material-ui/icons/Delete";
 
 class Notepad extends PureComponent {
 
-  constructor(props) {
-    super(props);
-  }
-
   handleChange = event => {
     let noteData = JSON.parse(this.props.noteData);
     if (event.target.name === "title") {
@@ -66,14 +62,6 @@ class Notepad extends PureComponent {
   }
 
   render() {
-    const styles = {
-      cardTitle: {
-        fontFamily: "Gloria Hallelujah, cursive",
-        width: "100%",
-        backgroundColor: "transparent",
-        border: "none"
-      }
-    };
     return (
      <Col      
       xs={12} md={3} className="notepad-wrap"
